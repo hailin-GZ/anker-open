@@ -1,0 +1,46 @@
+/* V3 extends a copied V2; earlier version files remain untouched. */
+:root{--electric:#087bc1;--glass:#f7fcff9c;--metal-line:#6e9cbf61}
+body{isolation:isolate;background:#edf4fa}
+.ambient-space{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:linear-gradient(120deg,#f5f9fc 5%,#e9f1f9 55%,#dcebf6)}
+.light-lane{position:absolute;top:-50%;width:140px;height:145%;border-inline:1px solid #6bb4e832;transform:rotate(-19deg);background:linear-gradient(90deg,#b4d8f100,#d7efff89 35%,#f9feffd9 50%,#a1d4f15c 70%,#d1e8f700);overflow:hidden}
+.light-lane:after{content:'';position:absolute;inset:-70% 8% 35%;background:linear-gradient(180deg,transparent 30%,#7bc8f570 68%,#ffffffef 94%,transparent);animation:downstream 7s linear infinite;will-change:transform}
+.lane-one{left:6%;opacity:.7}.lane-two{right:14%;width:210px;transform:rotate(23deg);opacity:.8}.lane-two:after{animation-delay:-4s;animation-duration:9s}.lane-three{right:-9%;width:90px;transform:rotate(23deg);opacity:.9}.lane-three:after{animation-delay:-1s;animation-duration:6s}
+.ambient-frame{position:absolute;width:460px;height:320px;border:1px solid #90b8d252;background:linear-gradient(145deg,#ffffff38,#daeafb1f);border-radius:14px;transform:perspective(900px) rotateY(-24deg) rotateZ(-12deg)}
+.frame-one{right:-90px;top:28%}.frame-two{left:-300px;top:55%;transform:rotate(19deg);width:490px;height:430px}
+.site-header{border-bottom-color:#a9c0d475}.site-header nav{color:#395b74}.header-download{color:#28516e}
+.hero{min-height:770px;background:transparent;padding-top:91px;padding-bottom:116px}.hero:after{display:none}.hero-copy{padding-top:12px}.hero h1{font-size:clamp(40px,4.4vw,66px);font-weight:600}.hero h1 span{color:#166288}.hero-copy>p:not(.compatibility){color:#3f5e74}
+.hero-download-card{margin-top:30px;width:410px;max-width:100%;padding:15px;background:linear-gradient(115deg,#ffffffd9,#e8f4fca3);border:1px solid #8db4ce99;border-radius:12px;backdrop-filter:blur(16px);position:relative}
+.hero-download-card:before{content:'';position:absolute;left:18px;right:18px;top:0;height:1px;background:#fff}
+.hero .hero-primary-download{display:flex;width:100%;justify-content:space-between;gap:24px;margin:0;padding:17px 23px;min-height:80px;font-size:23px;line-height:1.3;border-radius:8px;background:linear-gradient(110deg,#0d4268,#146c9a);color:#fff;position:relative;overflow:hidden}
+.hero-primary-download>span{position:relative;z-index:1}.hero-primary-download small{display:block;font-size:12px;color:#d0ebfb;font-weight:400;margin-top:5px}.hero-primary-download svg{width:28px;height:28px;position:relative;z-index:1}
+.hero-primary-download:after{content:'';position:absolute;inset:-100% 0;background:linear-gradient(100deg,transparent 30%,#d9f6ff26 50%,transparent 70%);transform:translateX(-100%);pointer-events:none}
+.hero-primary-download:hover:after,.hero-primary-download:focus-visible:after{animation:button-light 1.2s var(--ease) 1}
+.hero .hero-primary-download:hover{background:#085b87;transform:translateY(-2px)}.hero-primary-download:focus-visible{outline-width:3px;outline-color:#086fa9}
+.hero-release{display:flex;justify-content:space-between;gap:12px;margin:13px 3px 0;font-size:12px;line-height:1.4;font-variant-numeric:tabular-nums;color:#335870}.hero-download-card>p{font-size:12px;color:#4a667a;line-height:1.5;margin:11px 3px 0}
+.device-stage{height:705px;right:-1%;width:58%;top:2px}.device-float{inset:45px 11% 30px 7%}.device{width:min(100%,550px);filter:drop-shadow(0 34px 30px #29476033)}.device-stage canvas{z-index:0}.device-float{z-index:2}.orbital-line{z-index:0}.device-caption{z-index:3;bottom:42px}.holo-panel{position:absolute;pointer-events:none;border:1px solid #60a0c77d;border-radius:16px;background:linear-gradient(130deg,#ffffff9c,#d3eafa3b 55%,#9dc6e223);backdrop-filter:blur(3px);overflow:hidden;transform-style:preserve-3d}
+.holo-panel:before,.holo-panel:after{content:'';position:absolute;width:48px;height:48px;border-color:#318ac0;border-style:solid;opacity:.65}
+.holo-panel:before{top:14px;left:14px;border-width:2px 0 0 2px;border-radius:4px 0 0}.holo-panel:after{bottom:14px;right:14px;border-width:0 2px 2px 0;border-radius:0 0 4px}
+.panel-back{inset:75px 6% 91px 14%;transform:perspective(1000px) rotateY(-16deg) rotateZ(13deg);animation:panel-drift 11s ease-in-out infinite;z-index:0}
+.panel-front{inset:124px 14% 57px 5%;transform:perspective(1000px) rotateY(12deg) rotateZ(-9deg);background:linear-gradient(150deg,#ffffff39,#6cbce511);z-index:1}
+.scan-light{position:absolute;inset:-45% 0 70%;background:linear-gradient(180deg,transparent,#68b8e82b 65%,#b9e8ff9c 95%,transparent);animation:scan-down 5.5s linear infinite;will-change:transform}
+.hero-bottom{border-color:#8caec375;color:#3e617a}.hero-bottom a{color:#2b5876}
+.manifesto{background:linear-gradient(100deg,#c9dfef70,#eff8ffbb,#bed8ed7d);border-color:#94b3cc6b;backdrop-filter:blur(18px)}
+.experience{position:relative}.demo-console{background:#ffffffb8;border-color:#7ea9c573;backdrop-filter:blur(18px)}.console-top{background:linear-gradient(100deg,#f9fcffb5,#c4e2f570)}
+.getting-started{background:transparent}.download-section{background:linear-gradient(120deg,#c3dcec99,#f5fbffbf);backdrop-filter:blur(15px);border-color:#9fbed47a}.download-main>.button{min-height:68px;font-size:19px;gap:62px}.download-orbit{border-color:#5198c733}
+.questions{background:transparent}.site-footer{border-color:#9eb8cc80}
+@keyframes downstream{0%{transform:translateY(-25%)}100%{transform:translateY(230%)}}
+@keyframes scan-down{0%{transform:translateY(-30%);opacity:0}12%{opacity:1}85%{opacity:1}100%{transform:translateY(520%);opacity:0}}
+@keyframes panel-drift{0%,100%{transform:perspective(1000px) rotateY(-16deg) rotateZ(13deg) translateY(-5px)}50%{transform:perspective(1000px) rotateY(-11deg) rotateZ(9deg) translateY(8px)}}
+@keyframes button-light{0%,35%{transform:translateX(-100%)}80%,100%{transform:translateX(100%)}}
+@media(max-width:1100px){.hero{padding-top:75px;min-height:740px}.hero-download-card{width:370px}.hero .hero-primary-download{font-size:21px;min-height:76px}.device-stage{width:56%;height:650px}.panel-back{inset:85px 3% 75px 12%}.panel-front{inset:115px 11% 70px 4%}.hero-copy{max-width:110%}}
+@media(max-width:760px){
+  .site-header{background:#f0f7fcd9;border-bottom-color:#9ab9d073}.hero{padding-top:28px;padding-bottom:26px;min-height:auto}.hero-copy{max-width:100%}.hero h1{font-size:clamp(30px,7.8vw,41px)}.hero-copy>p:not(.compatibility){font-size:14px;margin-top:16px}
+  .hero-download-card{width:100%;margin-top:22px;padding:12px;backdrop-filter:blur(10px)}.hero .hero-primary-download{display:flex;font-size:22px;min-height:76px;padding:14px 20px;margin:0}.hero-release{margin-top:12px;font-size:12px}.hero-download-card>p{font-size:12px;margin-top:9px}.hero-primary-download small{font-size:12px;margin-top:5px}
+  .device-stage{height:345px;top:auto;right:auto;width:calc(100% + 40px);margin:0 -20px}.device-float{inset:5px 20% 16px 17%}.device{max-width:330px}.panel-back{inset:25px 12% 35px 23%;border-radius:12px}.panel-front{inset:45px 23% 16px 12%;border-radius:12px}.device-caption{left:20%;right:16%;bottom:4px}.holo-panel:before,.holo-panel:after{width:29px;height:29px}.holo-panel{backdrop-filter:none}
+  .ambient-frame{width:280px;height:240px}.frame-one{right:-130px;top:35%}.frame-two{display:none}.light-lane{width:75px}.lane-one{left:-7%;opacity:.5}.lane-two{right:5%;width:105px;opacity:.7}.lane-three{display:none}
+  .download-main>.button{font-size:20px;min-height:64px}.mobile-download-bar{background:#eef7fdf2;border-top-color:#87abc6}.mobile-download-bar a{font-size:15px;min-height:50px;background:#125c88}
+  .demo-console,.download-section,.manifesto{backdrop-filter:none}.site-footer{padding-bottom:28px}
+}
+@media(max-width:370px){.hero{padding-inline:16px}.hero h1{font-size:29px}.hero .hero-primary-download{font-size:21px;min-height:74px}.device-stage{height:300px}.device-float{inset:0 20% 15px 17%}.device-caption{font-size:12px;left:19%;right:14%}.hero-release{gap:9px}}
+@media(prefers-reduced-motion:reduce){.light-lane:after,.scan-light,.panel-back,.hero-primary-download:after{animation:none!important}.scan-light{transform:translateY(175%);opacity:.5}.light-lane:after{transform:translateY(70%);opacity:.4}}
+.motion-paused .scan-light{transform:translateY(175%);opacity:.5}.motion-paused .light-lane:after{transform:translateY(70%);opacity:.4}

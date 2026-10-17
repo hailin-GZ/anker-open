@@ -1,0 +1,17 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'com.shengying.beantest'
+    compileSdk 35
+    defaultConfig { applicationId 'com.shengying.beantest'; minSdk 26; targetSdk 35; versionCode 102; versionName '1.0.2-ui'; buildConfigField 'boolean', 'CLOUD_RELEASE', 'false'; buildConfigField 'String', 'SERVICE_ORIGIN', '"https://example.invalid"'; buildConfigField 'String', 'RECORDER_ADAPTER_CLASS', '""' }
+    buildFeatures { buildConfig true }
+    androidResources { ignoreAssetsPattern 'auth.json:models' }
+    buildTypes { release { debuggable false; minifyEnabled false } }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    sourceSets.main.java.srcDir '../../android-reply-feature/src/main/java'
+    packaging { resources { excludes += ['META-INF/DEPENDENCIES','META-INF/LICENSE*','META-INF/NOTICE*','META-INF/INDEX.LIST'] } }
+}
+dependencies {
+    implementation 'com.github.promeg:tinypinyin:2.0.3'
+    implementation 'org.ahocorasick:ahocorasick:0.3.0'
+}
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
