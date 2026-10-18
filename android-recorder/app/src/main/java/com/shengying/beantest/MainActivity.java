@@ -25,8 +25,8 @@ public class MainActivity extends Activity {
   }}catch(Exception unavailable){adapter=null;}
   if(adapter==null)status.setText("硬件适配器未安装 · 界面与标记可使用");
  }
- void permissions(){if(adapter!=null)adapter.requestPermissions();else new AlertDialog.Builder(this).setMessage("公开源码仅保留设备接口；请自行接入获授权的适配器。云端首次配置可使用激活入口。").setPositiveButton("配置云端",(d,w)->startActivity(new Intent(this,CloudSetupActivity.class))).setNegativeButton("关闭",null).show();}
- void scan(){if(adapter!=null)adapter.scan(targetInput.getText().toString().trim());else permissions();}
+ void permissions(){if(adapter!=null)adapter.requestPermissions();else new AlertDialog.Builder(this).setMessage("公开源码仅保留设备接口；请自行接入获授权的适配器。云端首次配置无需输入 App 激活码。").setPositiveButton("配置云端",(d,w)->startActivity(new Intent(this,CloudSetupActivity.class))).setNegativeButton("关闭",null).show();}
+ void scan(){if(adapter!=null)adapter.scan("");else permissions();}
  void query(){if(adapter!=null)adapter.refreshState();else status.setText("硬件适配器未安装");}
  @Override public void onRequestPermissionsResult(int r,String[] p,int[] results){super.onRequestPermissionsResult(r,p,results);if(r==83)productUi.microphonePermission(results.length>0&&results[0]==0);}
  @Override public void onBackPressed(){productUi.goBack();}

@@ -42,9 +42,11 @@
   const sizeObserver=new ResizeObserver(resize);sizeObserver.observe(stage);
   stage.addEventListener('pointermove',event=>{if(paused||reduce.matches||event.pointerType==='touch')return;const b=stage.getBoundingClientRect();pointerX=(event.clientX-b.left)/b.width-.5;pointerY=(event.clientY-b.top)/b.height-.5;stage.style.setProperty('--px',`${pointerX*12}px`);stage.style.setProperty('--py',`${pointerY*10}px`);});
   stage.addEventListener('pointerleave',()=>{pointerX=pointerY=0;stage.style.setProperty('--px','0px');stage.style.setProperty('--py','0px');});
-  const checksum='535e9fc7d791cc92d4018b7d0bfc8ba7d0ae1391528f1ee5b6eb32d2601838b0';
+  const checksum='DEPLOYMENT_CHECKSUM_NOT_CONFIGURED';
   document.querySelector('#copy-checksum').addEventListener('click',async()=>{const status=document.querySelector('#copy-status');try{await navigator.clipboard.writeText(checksum);status.textContent='已复制 SHA-256，可用于核对安装包。';}catch{status.textContent=`无法自动复制，请手动复制：${checksum}`;}});
-  document.querySelector('#apk-download').addEventListener('click',()=>{document.querySelector('#copy-status').textContent='已请求下载安装包。如未弹出提示，请检查浏览器的下载列表。';});
+  document.querySelectorAll('.download-option').forEach(link=>link.addEventListener('click',()=>{document.querySelector('#copy-status').textContent='已请求下载所选版本。如未弹出提示，请检查浏览器的下载列表。';}));
+  document.addEventListener('click',event=>{document.querySelectorAll('.download-picker[open]').forEach(picker=>{if(!picker.contains(event.target))picker.open=false;});});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape')document.querySelectorAll('.download-picker[open]').forEach(picker=>{picker.open=false;picker.querySelector('summary').focus();});});
   const destination=window.SHENGYING_EXPERIENCE?.url;
   if(destination){try{const target=new URL(destination,location.href);if(['http:','https:'].includes(target.protocol))document.querySelectorAll('.online-entry').forEach(link=>link.href=target.href);}catch{}}
   setMotion();resize();

@@ -18,3 +18,9 @@
 *.wav
 *.beanpackets
 .env*
+*.zip
+*.tar*
+*.so
+*.dex
+*.class
+**/libs/

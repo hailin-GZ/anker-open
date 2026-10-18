@@ -1,1 +1,1 @@
-{"version": "1.0.2-ui", "version_code": 102, "distribution": "APK intentionally excluded; operator supplies a separately authorized download artifact"}
+{"version": "1.0.3", "version_code": 103, "channels": {"stable": {"version": "1.0.2-ui", "app_activation_code_required": true}, "latest": {"version": "1.0.3", "app_activation_code_required": false}}, "distribution": "APK intentionally excluded; operator supplies a separately authorized download artifact"}

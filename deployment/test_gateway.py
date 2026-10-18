@@ -42,6 +42,33 @@ class Tests(unittest.TestCase):
     def test_registry_restart_retains_identity_and_roles(self):
         identity,c=self.enroll();self.registry.db.close();self.registry=g.Registry(self.root/'registry.db',self.config)
         self.assertEqual(self.registry.authorize('Bearer '+c['backend']['write_token'],'write'),identity)
+    def test_code_free_enrollment_is_opt_in_and_preserves_identity_proof(self):
+        data={'installation_id':str(uuid.uuid4()),'installation_secret':'p'*48}
+        with self.assertRaises(PermissionError):self.registry.enroll(data)
+        self.config['allow_code_free_enrollment']=True
+        first=self.registry.enroll(data)
+        self.assertEqual(first,self.registry.enroll(data))
+        self.assertEqual(self.registry.authorize('Bearer '+first['backend']['write_token'],'write'),data['installation_id'])
+        with self.assertRaises(PermissionError):self.registry.enroll(dict(data,installation_secret='x'*48))
+        with self.assertRaises(PermissionError):self.registry.enroll(dict(data,activation_code='wrong'))
+        self.assertEqual(first,self.registry.enroll(dict(data,activation_code='activation')))
+    def test_code_free_http_stable_client_compatibility_and_isolation(self):
+        self.config['allow_code_free_enrollment']=True
+        server=g.Server(('127.0.0.1',0),self.registry,None);threading.Thread(target=server.serve_forever,daemon=True).start()
+        base='http://127.0.0.1:'+str(server.server_port)
+        def post(data):
+            with urllib.request.urlopen(urllib.request.Request(base+'/v1/enroll',data=json.dumps(data).encode())) as response:return json.load(response)
+        try:
+            stable={'installation_id':str(uuid.uuid4()),'installation_secret':'s'*48,'activation_code':'activation'}
+            latest={'installation_id':str(uuid.uuid4()),'installation_secret':'n'*48}
+            a=post(stable);b=post(latest)
+            self.assertEqual(a,post(stable));self.assertEqual(b,post(latest))
+            self.assertNotEqual(a['reply']['read_token'],b['reply']['read_token'])
+            self.assertEqual(a['sdk_auth'],b['sdk_auth'])
+            for invalid in (dict(latest,installation_secret='x'*48),dict(latest,activation_code='wrong')):
+                with self.assertRaises(urllib.error.HTTPError) as caught:post(invalid)
+                self.assertEqual(caught.exception.code,403)
+        finally:server.shutdown();server.server_close()
     def test_tenant_storage_and_capacity(self):
         instances=[]
         def factory(identity,config,data):

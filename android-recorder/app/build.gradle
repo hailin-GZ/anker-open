@@ -2,7 +2,7 @@ plugins { id 'com.android.application' }
 android {
     namespace 'com.shengying.beantest'
     compileSdk 35
-    defaultConfig { applicationId 'com.shengying.beantest'; minSdk 26; targetSdk 35; versionCode 102; versionName '1.0.2-ui'; buildConfigField 'boolean', 'CLOUD_RELEASE', 'false'; buildConfigField 'String', 'SERVICE_ORIGIN', '"https://example.invalid"'; buildConfigField 'String', 'RECORDER_ADAPTER_CLASS', '""' }
+    defaultConfig { applicationId 'com.shengying.beantest'; minSdk 26; targetSdk 35; versionCode 103; versionName '1.0.3'; buildConfigField 'boolean', 'CLOUD_RELEASE', 'false'; buildConfigField 'String', 'SERVICE_ORIGIN', '"https://example.invalid"'; buildConfigField 'String', 'RECORDER_ADAPTER_CLASS', '""' }
     buildFeatures { buildConfig true }
     androidResources { ignoreAssetsPattern 'auth.json:models' }
     buildTypes { release { debuggable false; minifyEnabled false } }

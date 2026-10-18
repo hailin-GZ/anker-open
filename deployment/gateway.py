@@ -69,11 +69,14 @@ class Registry:
             found=self.tokens.get(header[7:])
             return found[0] if found and found[1]==role else None
     def enroll(self,value):
-        if set(value)!={'installation_id','installation_secret','activation_code'}:raise ValueError('invalid_enrollment')
-        identity,proof,code=(value[k] for k in ('installation_id','installation_secret','activation_code'))
-        if not all(isinstance(x,str) for x in (identity,proof,code)):raise ValueError('invalid_enrollment')
+        if set(value) not in ({'installation_id','installation_secret'}, {'installation_id','installation_secret','activation_code'}):raise ValueError('invalid_enrollment')
+        identity,proof=(value[k] for k in ('installation_id','installation_secret'))
+        code=value.get('activation_code')
+        if not all(isinstance(x,str) for x in (identity,proof)) or ('activation_code' in value and not isinstance(code,str)):raise ValueError('invalid_enrollment')
         if not re.fullmatch(r'[a-f0-9-]{36}',identity) or not 32<=len(proof)<=128:raise ValueError('invalid_installation')
-        if not hmac.compare_digest(hashlib.sha256(code.strip().encode()).hexdigest(),self.config['activation_sha256']):raise PermissionError('activation_required')
+        if code is not None:
+            if not hmac.compare_digest(hashlib.sha256(code.strip().encode()).hexdigest(),self.config['activation_sha256']):raise PermissionError('activation_required')
+        elif not self.config.get('allow_code_free_enrollment',False):raise PermissionError('activation_required')
         hashed=hashlib.sha256(proof.encode()).hexdigest()
         with self.lock,self.db:
             row=self.db.execute('SELECT * FROM installations WHERE id=?',(identity,)).fetchone()
